@@ -31,14 +31,15 @@ def strxor(a, b):
         return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a, b[:len(a)])])
 
 
-def encrypt(pt, key):
-	ks = key*((len(pt)/len(key))+1)
-	return strxor(pt, ks)
+def cryptoxor(input, key):
+	ks = key*((len(input)/len(key))+1)
+	return strxor(input, ks)
+
 
 def main(argv):
 	pt = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
 	
-	print encrypt(pt,"ICE").encode('hex')
+	print cryptoxor(pt,"ICE").encode('hex')
 
 
 

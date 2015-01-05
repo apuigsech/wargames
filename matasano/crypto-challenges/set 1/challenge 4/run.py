@@ -38,7 +38,7 @@ def calculate_statistical_score(plaintext):
 			score += eng_freq[::-1].index(ch)
 		except:
 			score += 0
-	return score
+	return (score/len(plaintext))
 
 def generate_xor_candidates(ct):
 	candidates = []

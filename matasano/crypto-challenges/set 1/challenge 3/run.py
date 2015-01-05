@@ -35,7 +35,7 @@ def calculate_statistical_score(plaintext):
 	eng_freq="ETAOINSHRDLCUMWFGYPBVKJXQZ"
 	for ch in plaintext:
 		try:
-			score += eng_freq[::-1].index(ch)
+			score += eng_freq[::-1].index(ch.upper())
 		except:
 			score += 0
 	return score
