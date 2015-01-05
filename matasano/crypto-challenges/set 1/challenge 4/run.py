@@ -32,7 +32,7 @@ def strxor(a, b):
 
 def calculate_statistical_score(plaintext):
 	score = 0
-	eng_freq="ETAOINSHRDLCUMWFGYPBVKJXQZ"
+	eng_freq="etaoinshrdlcumwfgypbvkjxqz"
 	for ch in plaintext:
 		try:
 			score += eng_freq[::-1].index(ch)
