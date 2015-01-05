@@ -2,7 +2,7 @@
 
 # The matasano crypto challenges - Set 1 Challenge 6 (http://cryptopals.com/sets/1/challenges/6/)
 #
-# Copyright (c) 2014 - Albert Puigsech Galicia (albert@puigsech.com)
+# Copyright (c) 2015 - Albert Puigsech Galicia (albert@puigsech.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -24,7 +24,6 @@
 
 import base64
 import sys
-import itertools
 
 
 def strxor(a, b):
@@ -105,7 +104,7 @@ def main(argv):
 		pct = ''.join([j[i] for j in chunks])
 		key = key + chr(generate_xor_candidates(pct)[0][2])
 	print "Key:", key
-	
+
 	print cryptoxor(ct, key)
 
 

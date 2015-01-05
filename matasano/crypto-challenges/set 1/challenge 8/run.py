@@ -25,9 +25,6 @@
 import base64
 import sys
 
-from Crypto.Cipher import AES
-
-
 
 def unique_blocks_ratio(text, blocklen, numblocks=None):
 	if (numblocks == None):
