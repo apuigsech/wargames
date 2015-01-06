@@ -25,7 +25,7 @@
 import base64
 import sys
 
-
+# BEGIN: Functions from cryptohelper
 def unique_blocks_ratio(text, blocklen, numblocks=None):
 	if (numblocks == None):
 		numblocks = len(text)/blocklen
@@ -33,7 +33,7 @@ def unique_blocks_ratio(text, blocklen, numblocks=None):
 	unique_chunks = set([text[i*blocklen:(i+1)*blocklen] for i in range(numblocks)])
 
 	return float(len(unique_chunks))/numblocks
-
+# END: Functions from cryptohelper
 
 
 def main(argv):

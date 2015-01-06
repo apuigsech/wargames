@@ -24,11 +24,14 @@
 
 import sys
 
+# BEGIN: Functions from cryptohelper
 def strxor(a, b):
     if len(a) > len(b):
         return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a[:len(b)], b)])
     else:
         return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a, b[:len(a)])])
+# END: Functions from cryptohelper
+
 
 def main(argv):
 	pt="1c0111001f010100061a024b53535009181c".decode('hex')

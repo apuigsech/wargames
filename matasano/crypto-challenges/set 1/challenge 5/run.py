@@ -24,6 +24,7 @@
 
 import sys
 
+# BEGIN: Functions from cryptohelper
 def strxor(a, b):
     if len(a) > len(b):
         return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a[:len(b)], b)])
@@ -34,6 +35,7 @@ def strxor(a, b):
 def cryptoxor(input, key):
 	ks = key*((len(input)/len(key))+1)
 	return strxor(input, ks)
+# END: Functions from cryptohelper
 
 
 def main(argv):
