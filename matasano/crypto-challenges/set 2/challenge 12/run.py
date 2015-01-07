@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# The matasano crypto challenges - Set 2 Challenge 10 (http://cryptopals.com/sets/2/challenges/10/)
+# The matasano crypto challenges - Set 2 Challenge 12 (http://cryptopals.com/sets/2/challenges/12/)
 #
 # Copyright (c) 2015 - Albert Puigsech Galicia (albert@puigsech.com)
 #
@@ -50,12 +50,13 @@ def decryption_oracle(unknown_pt):
 		if blocksize != 0:
 			break
 		
-	print "Blocksize:", blocksize
 	numblocks = init_len/blocksize
 
 	ct = encryption_oracle("A"*1024, unknown_pt)
 	if unique_blocks_ratio(ct, 16) < 1:
-		print "Mode: ECB"
+		mode = mode_ecb
+	else:
+		mode = mode_cbc
 
 	guess_pt = ""
 	guess_string = "A"*blocksize
@@ -73,12 +74,13 @@ def decryption_oracle(unknown_pt):
 		guess_string = guess_block
 		guess_pt = guess_pt + guess_block
 
-	return guess_pt
+	return blocksize,mode,guess_pt
 
 
 def main(argv):
 	str="Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK"
-	print decryption_oracle(base64.b64decode(str))
+	blocksize,mode,guess_pt = decryption_oracle(base64.b64decode(str))
+	print guess_pt
 
 
 if __name__ == "__main__":
