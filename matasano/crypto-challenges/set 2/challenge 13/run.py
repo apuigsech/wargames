@@ -39,6 +39,7 @@ def profile_for(email):
 		'role': 'user'
 	}
 	query_str = 'email={0}&uid={1}&role={2}'.format(profile['email'], profile['uid'], profile['role'])
+	#print block_split(query_str,16)
 	return encrypt_block_ECB(query_str, 16, key, encrypt_block_AES)
 
 
@@ -62,10 +63,9 @@ def tamper_data(ct, fakedata, idx):
 
 
 def main(argv):
-	email = "foo@bar.com"
-	ct = profile_for(email)
+	ct = profile_for("fake@mail.com")
 
-	newct = tamper_data(ct, "m&uid=10&role=admin", 1)
+	newct = tamper_data(ct, "admin", 2)
 
 	print decrypt_block_ECB(newct, 16, key, decrypt_block_AES)
 
