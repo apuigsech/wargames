@@ -29,60 +29,29 @@ from itertools import combinations
 from cryptohelper import *
 
 key = ''.join([chr(random.randint(0,255)) for i in range(16)])
+unknown_pt = base64.b64decode("Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK")
 
-mode_ecb = 0
-mode_cbc = 1
-
-#charset="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ,.'-\n"
 charset=''.join([chr(i) for i in range(256)])
 
-def encryption_oracle(known_pt, unknown_pt):
-	pt = known_pt + unknown_pt
-	return encrypt_block_ECB(pt, 16, key, encrypt_block_AES)
+def oracle_decryption(challenge):
+	blocksize = oracle_blocksize(challenge)
+
+	if oracle_isECB(challenge, blocksize) == False:
+		return None,None
+
+	prefix_len = oracle_ECB_prefix_len(challenge, blocksize)
 	
+	return oracle_ECB_decrypt(challenge, len(challenge('')), blocksize, charset, prefix_len)
 
-def decryption_oracle(unknown_pt):
-	init_len = len(encryption_oracle("", unknown_pt))
 
-	for i in range(50):
-		known_pt = "A"*i
-		blocksize = len(encryption_oracle(known_pt, unknown_pt)) - init_len
-		if blocksize != 0:
-			break
-		
-	numblocks = init_len/blocksize
 
-	ct = encryption_oracle("A"*1024, unknown_pt)
-	if unique_blocks_ratio(ct, 16) < 1:
-		mode = mode_ecb
-	else:
-		mode = mode_cbc
-
-	guess_pt = ""
-	guess_string = "A"*blocksize
-	for i in range(numblocks):
-		guess_block=""
-		for j in range(1,blocksize+1):
-			known_pt = ""
-			for ch in charset:
-				known_pt = known_pt + guess_string[j:] + guess_block + ch
-			index_ct = block_split(encryption_oracle(known_pt, unknown_pt), blocksize)
-			b = block_split(encryption_oracle(guess_string[j:], unknown_pt), blocksize)
-			if b[i] in index_ct:
-				z = index_ct.index(b[i])
-				guess_block = guess_block + charset[z]
-		guess_string = guess_block
-		guess_pt = guess_pt + guess_block
-
-	return blocksize,mode,guess_pt
+def encryption_challenge(data):
+	pt =  data + unknown_pt
+	return encrypt_block_ECB(pt, 16, key, encrypt_block_AES)
 
 
 def main(argv):
-	str="Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK"
-	blocksize,mode,guess_pt = decryption_oracle(base64.b64decode(str))
-	print guess_pt
-
+	print oracle_decryption(encryption_challenge)
 
 if __name__ == "__main__":
-   main(sys.argv)
-
+	main(sys.argv)
