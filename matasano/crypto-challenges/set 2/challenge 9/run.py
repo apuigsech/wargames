@@ -23,16 +23,12 @@
 # DEALINGS IN THE SOFTWARE.
 
 import sys
-
-def block_add_padding(block, blocklen=16):
-	padlen = blocklen-len(block)
-	return block + chr(padlen)*padlen
-
+from cryptohelper import *
 
 def main(argv):
 	block="YELLOW SUBMARINE"
 
-	print block_add_padding(block, 20)
+	print block_pad_PKCS7(block, 20)
 
 
 if __name__ == "__main__":

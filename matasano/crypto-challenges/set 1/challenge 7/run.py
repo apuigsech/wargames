@@ -24,19 +24,14 @@
 
 import base64
 import sys
-
-from Crypto.Cipher import AES
-
+from cryptohelper import *
 
 
 def main(argv):
 	with open('7.txt') as f:
 		ct = base64.b64decode(f.read())
 
-	ecb_aes = AES.new("YELLOW SUBMARINE", AES.MODE_ECB)
-	pt = ecb_aes.decrypt(ct)
-
-	print pt
+	print  decrypt_block_ECB(ct, 16, "YELLOW SUBMARINE", decrypt_block_AES)
 
 
 

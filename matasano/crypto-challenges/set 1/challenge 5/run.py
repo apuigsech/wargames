@@ -23,20 +23,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 import sys
-
-# BEGIN: Functions from cryptohelper
-def strxor(a, b):
-    if len(a) > len(b):
-        return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a[:len(b)], b)])
-    else:
-        return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a, b[:len(a)])])
-
-
-def cryptoxor(input, key):
-	ks = key*((len(input)/len(key))+1)
-	return strxor(input, ks)
-# END: Functions from cryptohelper
-
+from cryptohelper import *
 
 def main(argv):
 	pt = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"

@@ -23,40 +23,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 import sys
-
-# BEGIN: Functions from cryptohelper
-def strxor(a, b):
-    if len(a) > len(b):
-        return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a[:len(b)], b)])
-    else:
-        return "".join([chr(ord(x) ^ ord(y)) for (x, y) in zip(a, b[:len(a)])])
-
-freq_eng = {
-	'a':8.167, 'b':1.492, 'c':2.782,'d':4.253,'e':12.702,'f':2.228,'g':2.015,'h':6.094,
-	'i':6.966,'j':0.153,'k':0.772,'l':4.025,'m':2.406,'n':6.749,'o':7.507,'p':1.929,
-	'q':0.095,'r':5.987,'s':6.327,'t':9.056,'u':2.758,'v':0.978,'w':2.360,'x':0.150,
-	'y':1.974,'z':0.074
-}
-
-
-def text_frequency_score(text, freq, average=True):
-	score = 0.0
-	for ch in text:
-		if freq.has_key(ch):
-			score += 10 + freq[ch]
-	if average == True:
-		score = score/len(text)
-	return score
-
-
-def xor_statistical_candidates(ct, freq=freq_eng):
-	candidates = []
-	for key in range(0,255):
-		pt = strxor(ct,chr(key)*len(ct))
-		candidates.append([key, pt, text_frequency_score(pt, freq)])
-	return sorted(candidates, key=lambda x: x[2], reverse=True)
-# END: Functions from cryptohelper
-
+from cryptohelper import *
 
 
 def main(argv):
