@@ -42,27 +42,29 @@ def encryption_oracle(pt):
 	pt = ''.join([chr(random.randint(0,255)) for i in range(count_before)]) + pt + ''.join([chr(random.randint(0,255)) for i in range(count_after)])
 
 	if mode == mode_ecb:
-		ct = encrypt_block_ECB(pt, 16, "YELLOW SUBMARINE", encrypt_block_AES)
+		ct = encrypt_block_ECB(pt, 16, key, encrypt_block_AES)
 	elif mode == mode_cbc:
 		iv = ''.join([chr(random.randint(0,255)) for i in range(16)])
-		ct = encrypt_block_CBC(pt, 16, "\x00"*16, "YELLOW SUBMARINE", encrypt_block_AES)
+		ct = encrypt_block_CBC(pt, 16, iv, key, encrypt_block_AES)
 	return ct,mode
 
-
+def detection_oracle(ct):
+	if unique_blocks_ratio(ct, 16) < 1:
+		return mode_ecb
+	else:
+		return mode_cbc
 
 def main(argv):
 	for i in range(50):
 		pt = "A"*1024
 		ct, mode = encryption_oracle(pt)
-		if unique_blocks_ratio(ct, 16) < 1:
-			guess_mode = mode_ecb
-		else:
-			guess_mode = mode_cbc
+		guess_mode = detection_oracle(ct)
 
 		if (guess_mode == mode):
 			print "Guess OK"
 		else:
 			print "Guess FAIL"
+
 
 
 
