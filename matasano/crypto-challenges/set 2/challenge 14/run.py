@@ -44,7 +44,7 @@ def oracle_decryption(challenge):
 	blocksize = oracle_blocksize(challenge)
 
 	if oracle_isECB(challenge, blocksize) == False:
-		return None,None
+		return None
 
 	prefix_len = oracle_ECB_prefix_len(challenge, blocksize)
 	

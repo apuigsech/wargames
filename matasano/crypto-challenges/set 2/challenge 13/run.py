@@ -39,7 +39,6 @@ def profile_for(email):
 		'role': 'user'
 	}
 	query_str = 'email={0}&uid={1}&role={2}'.format(profile['email'], profile['uid'], profile['role'])
-	#print block_split(query_str,16)
 	return encrypt_block_ECB(query_str, 16, key, encrypt_block_AES)
 
 
