@@ -31,7 +31,7 @@ from cryptohelper import *
 key = ''.join([chr(random.randint(0,255)) for i in range(16)])
 
 def profile_for(email):
-	if re.match('[=&]', email):
+	if re.match('.[=&].', email):
 		return None
 	profile = {
 		'email': email,

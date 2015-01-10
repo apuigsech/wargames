@@ -25,13 +25,13 @@
 import base64
 import sys
 import random
-from itertools import combinations
 from cryptohelper import *
 
 key = ''.join([chr(random.randint(0,255)) for i in range(16)])
 unknown_pt = base64.b64decode("Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK")
 
 charset=''.join([chr(i) for i in range(256)])
+
 
 def oracle_decryption(challenge):
 	blocksize = oracle_blocksize(challenge)
@@ -44,7 +44,6 @@ def oracle_decryption(challenge):
 	return oracle_ECB_decrypt(challenge, len(challenge('')), blocksize, charset, prefix_len)
 
 
-
 def encryption_challenge(data):
 	pt =  data + unknown_pt
 	return encrypt_block_ECB(pt, 16, key, encrypt_block_AES)
@@ -52,6 +51,7 @@ def encryption_challenge(data):
 
 def main(argv):
 	print oracle_decryption(encryption_challenge)
+
 
 if __name__ == "__main__":
 	main(sys.argv)

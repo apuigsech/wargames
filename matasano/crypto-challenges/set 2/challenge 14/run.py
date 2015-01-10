@@ -25,13 +25,8 @@
 import base64
 import sys
 import random
-from itertools import combinations
 from cryptohelper import *
 
-import base64
-import sys
-import random
-from cryptohelper import *
 
 key = ''.join([chr(random.randint(0,255)) for i in range(16)])
 unknown_pt_pre = ''.join([chr(random.randint(0,255)) for i in range(random.randint(5,32))])

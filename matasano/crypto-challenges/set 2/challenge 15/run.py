@@ -27,6 +27,7 @@ import sys
 import random
 from cryptohelper import *
 
+
 pt_list = [
 	"ICE ICE BABY\x04\x04\x04\x04",
 	"ICE ICE BABY\x05\x05\x05\x05",
