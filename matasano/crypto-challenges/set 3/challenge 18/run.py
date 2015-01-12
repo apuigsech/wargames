@@ -33,7 +33,7 @@ key = "YELLOW SUBMARINE"
 
 
 def main(argv):
-	print  decrypt_block_CTR(pt, 16, "\x00"*8, key, encrypt_block_AES)
+	print  decrypt_block_CTR(pt, 16, "\x00"*16, key, encrypt_block_AES, True)
 
 
 if __name__ == "__main__":
