@@ -86,8 +86,8 @@ def main(argv):
 
 	ks = keystream_from_many_time_pad(ct_list, dict(freq_eng, **{' ':15, ':':2, ';':2}))
 
-	for i in range(len(data)):
-		print strxor(data[i], ks)
+	for i in range(len(ct_list)):
+		print strxor(ct_list[i], ks)
 
 
 if __name__ == "__main__":
