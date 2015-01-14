@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# The matasano crypto challenges - Set 3 Challenge 21 (http://cryptopals.com/sets/3/challenges/21/)
+# The matasano crypto challenges - Set 3 Challenge 22 (http://cryptopals.com/sets/3/challenges/22/)
 #
 # Copyright (c) 2015 - Albert Puigsech Galicia (albert@puigsech.com)
 #
@@ -42,10 +42,10 @@ def mt_brute_seed(rg, value, index=0):
 def main(argv):
 	time.sleep(random.randint(40,1000))
 	seed = int(time.time())
-	mt_init(seed)
+	st = mt_init(seed)
 	time.sleep(random.randint(40,1000))
 
-	num = mt_next()
+	num = mt_next(st)
 
 	cracked_seed = mt_brute_seed(range(int(time.time()), int(time.time())-5000, -1), num)
 

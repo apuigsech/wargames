@@ -28,11 +28,11 @@ import sys
 from cryptohelper import *
 
 def main(argv):
-	mt_init(0)
+	st = mt_init(0)
 
 	# Samples
 	for i in range(20):
-		print mt_next()
+		print mt_next(st)
 
 
 if __name__ == "__main__":
