@@ -25,44 +25,7 @@
 
 import sys
 
-
-mt_matrix = []
-mt_idx = 0
-
-
-def mt_init(seed):
-	global mt_idx
-
-	mt_idx = 0
-	mt_matrix.append(seed & 0xffffffff)
-	for i in range(1,624):
-		mt_matrix.append(((1812433253 * (mt_matrix[i-1] ^ (mt_matrix[i-1]>>30)) + i)) & 0xffffffff)
-
-
-
-def mt_next():
-	global mt_idx
-	if mt_idx == 0:
-		mt_gen_numbers()
-
-	y = mt_matrix[mt_idx]
-	y = y ^ (y>>11)
-	y = y ^ (y<<7 & 2636928640)
-	y = y ^ (y<<15 & 4022730752)
-	y = y ^ (y>>18)
-
-	mt_idx = (mt_idx + 1)%624
-
-	return y
-
-
-def mt_gen_numbers():
-	for i in range(624):
-		y = mt_matrix[i] = (mt_matrix[i] & 0x80000000) + (mt_matrix[(i+1)%264] & 0x7fffffff)
-		mt_matrix[i] = mt_matrix[(i+397)%624] ^ (y>>1)
-		if (y%2) != 0:
-			mt_matrix[i] = mt_matrix[i] ^ 2567483615
-
+from cryptohelper import *
 
 def main(argv):
 	mt_init(0)
