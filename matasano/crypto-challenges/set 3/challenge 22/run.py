@@ -31,9 +31,9 @@ from cryptohelper import *
 
 def mt_brute_seed(rg, value, index=0):
 	for s in rg:
-		mt_init(s)
+		st = mt_init(s)
 		for i in range(0, index+1):
-			num = mt_next()
+			num = mt_next(st)
 		if num == value:
 			return s
 	return None
