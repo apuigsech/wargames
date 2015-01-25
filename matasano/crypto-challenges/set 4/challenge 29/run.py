@@ -57,10 +57,10 @@ def guess_keylen():
 def tamper_data(data, hash, new_data):
 	keylen = guess_keylen()
 
-	m = sha1_pad(data, len(data)+keylen) + new_data
+	m = message_pad(data, len(data)+keylen, "B") + new_data
 
 	s = struct.unpack(">IIIII", hash)
-	new_data = sha1_pad(new_data, len(m)+keylen)
+	new_data = message_pad(new_data, len(m)+keylen, "B")
 	h = sha1(new_data, s, False)
 
 	return m, h
