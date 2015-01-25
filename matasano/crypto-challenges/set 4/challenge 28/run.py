@@ -25,7 +25,6 @@
 
 import sys
 import random
-import sha
 
 from cryptohelper import *
 

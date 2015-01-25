@@ -67,7 +67,6 @@ def tamper_data(data, hash, new_data):
 	return m, h
 
 
-
 def main(argv):
 	message = "comment1=cooking%20MCs;userdata=foo;comment2=%20like%20a%20pound%20of%20bacon"
 	new_message = ";admin=true"
