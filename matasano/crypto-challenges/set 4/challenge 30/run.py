@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# The matasano crypto challenges - Set 4 Challenge 30 (http://cryptopals.com/sets/3/challenges/30/)
+# The matasano crypto challenges - Set 4 Challenge 30 (http://cryptopals.com/sets/4/challenges/30/)
 #
 # Copyright (c) 2015 - Albert Puigsech Galicia (albert@puigsech.com)
 #

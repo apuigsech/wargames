@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# The matasano crypto challenges - Set 4 Challenge 31 (http://cryptopals.com/sets/3/challenges/31/)
+# The matasano crypto challenges - Set 4 Challenge 31 (http://cryptopals.com/sets/4/challenges/31/)
 #
 # Copyright (c) 2015 - Albert Puigsech Galicia (albert@puigsech.com)
 #
@@ -62,7 +62,7 @@ def bruteforce_digest(filename):
 	current_diggest = ["\x00"]*20
 	current_time_range = 0.25
 	for i in range(20):
-		for byte in range(255):
+		for byte in range(256):
 			current_diggest[i] = chr(byte)
 			t1 = time.time()
 			content = challenge_read_file(filename, ''.join(current_diggest))
