@@ -24,7 +24,9 @@
 
 import base64
 import sys
-from cryptohelper import *
+
+# Cryptohelper from https://github.com/apuigsech/cryptohelper
+from cryptohelper import * 
 
 def main(argv):
 	str="49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d".decode('hex')

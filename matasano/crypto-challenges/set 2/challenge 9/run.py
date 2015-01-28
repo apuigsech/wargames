@@ -23,6 +23,8 @@
 # DEALINGS IN THE SOFTWARE.
 
 import sys
+
+# Cryptohelper from https://github.com/apuigsech/cryptohelper
 from cryptohelper import *
 
 def main(argv):

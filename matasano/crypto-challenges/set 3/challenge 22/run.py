@@ -27,6 +27,7 @@ import sys
 import random
 import time
 
+# Cryptohelper from https://github.com/apuigsech/cryptohelper
 from cryptohelper import *
 
 def mt_brute_seed(rg, value, index=0):

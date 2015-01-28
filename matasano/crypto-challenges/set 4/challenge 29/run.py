@@ -27,6 +27,7 @@ import sys
 import random
 import struct
 
+# Cryptohelper from https://github.com/apuigsech/cryptohelper
 from cryptohelper import *
 
 

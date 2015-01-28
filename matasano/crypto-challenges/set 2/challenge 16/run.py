@@ -26,6 +26,8 @@ import base64
 import sys
 import random
 import re
+
+# Cryptohelper from https://github.com/apuigsech/cryptohelper
 from cryptohelper import *
 
 key = ''.join([chr(random.randint(0,255)) for i in range(16)])
