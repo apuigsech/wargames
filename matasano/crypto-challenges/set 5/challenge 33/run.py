@@ -31,14 +31,6 @@ import time
 # Cryptohelper from https://github.com/apuigsech/cryptohelper
 from cryptohelper import *
 
-def modexp (g, u, p):
-	s = 1
-	while u != 0:
-		if u & 1:
-			s = (s * g)%p
-		u >>= 1
-		g = (g * g)%p;
-   	return s
 
 def main(argv):
     p = 37

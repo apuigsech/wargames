@@ -41,16 +41,6 @@ side_B_info = {}
 side_MITM_info = {}
 
 
-def modexp (g, u, p):
-	s = 1
-	while u != 0:
-		if u & 1:
-			s = (s * g)%p
-		u >>= 1
-		g = (g * g)%p;
-   	return s
-
-
 def dh_generate_key(g, p):
     u = random.randint(0, p-1)
     return u,modexp(g, u, p)
