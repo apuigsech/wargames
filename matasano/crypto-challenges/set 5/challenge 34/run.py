@@ -123,9 +123,11 @@ def simulate_communication(mitm):
 
 
 def main(argv):
+    print "COMMUNICATION WITHOUT MITM"
     simulate_communication(False)
+    print "COMMUNICATION WITH MITM"
     simulate_communication(True)
 
 
 if __name__ == "__main__":
-	main(sys.argv)
+    main(sys.argv)
