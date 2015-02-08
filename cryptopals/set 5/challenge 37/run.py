@@ -55,7 +55,8 @@ def dh_generate_key(g, p):
 def pack_string_to_int(str):
     num = 0
     for i in reversed(range(len(str))):
-        num += ord(str[i])*256**i
+        e = len(str)-i-1
+        num += ord(str[i])*256**e
     return num
 
 
